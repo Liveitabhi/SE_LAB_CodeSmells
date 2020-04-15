@@ -1,0 +1,3 @@
+[submodule "eslint-plugin-smells"]
+	path = eslint-plugin-smells
+	url = ./
