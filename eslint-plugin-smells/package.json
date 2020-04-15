@@ -25,7 +25,7 @@
   "bugs": "https://github.com/elijahmanor/eslint-plugin-smells/issues",
   "devDependencies": {
     "coveralls": "2.11.2",
-    "eslint": "0.18",
+    "eslint": "6.8",
     "eslint-tester": "0.6.0",
     "istanbul": "0.3.11",
     "mocha": "2.2.1"
