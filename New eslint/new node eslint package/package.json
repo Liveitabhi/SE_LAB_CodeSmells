@@ -1,0 +1,15 @@
+{
+  "name": "nnep",
+  "version": "1.0.0",
+  "description": "",
+  "main": "test-file-switch.js",
+  "dependencies": {
+    "eslint": "^7.0.0-alpha.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
