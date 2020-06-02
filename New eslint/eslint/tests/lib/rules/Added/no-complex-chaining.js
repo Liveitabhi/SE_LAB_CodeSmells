@@ -15,30 +15,20 @@ var eslint = require('eslint').linter,
 // Tests
 // ------------------------------------------------------------------------------
 
-var HARMFUL = 'switch can be harmful.';
-var TYPE = 'SwitchStatement';
+var ERROR = 'Too complex chaining.';
 var eslintTester = new ESLintTester(eslint);
 
-eslintTester.addRuleTest('lib/rules/no-switch', {
+eslintTester.addRuleTest('lib/rules/no-complex-chaining', {
   // Examples of code that should not trigger the rule
   valid: [
-    'function doSomething(e) { var f = e; }',
-    'function doSomething() { var f = doSomething; }',
-    'function foo() { } function doSomething() { var f = foo; }'
+    'function foo(e) { this.bar(); }',
+    'function foo(e) { this.bar().buzz(); }'
   ],
   // Examples of code that should trigger the rule
   invalid: [
     {
-      code: 'var option = 0; switch(option) { case "a": break; }',
-      errors: [{message: HARMFUL, type: TYPE}]
-    },
-    {
-      code: 'var option = 0; switch(option) { case "a": option++; break; }',
-      errors: [{message: HARMFUL, type: TYPE}]
-    },
-    {
-      code: 'function doSomething(option) { switch(option) { case "a": break; } }',
-      errors: [{message: HARMFUL, type: TYPE}]
+      code: 'function foo(e) { this.bar().buzz().baz(); }',
+      errors: [{message: ERROR, type: 'CallExpression'}]
     }
   ]
 });

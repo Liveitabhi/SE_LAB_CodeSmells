@@ -1,0 +1,30 @@
+/**
+ * @fileoverview Rule to flag use of `switch` statement
+ * @author Deep Abhishek
+ */
+
+'use strict';
+
+// ------------------------------------------------------------------------------
+// Rule Definition
+// ------------------------------------------------------------------------------
+
+module.exports = function(context) {
+  return {
+    SwitchCase: function(node) {
+      var consequent = node.consequent;
+
+      if (consequent.length === 1 && consequent[0].type === 'BlockStatement') {
+        consequent = consequent[0].body;
+      }
+
+      consequent = consequent.filter(function(item) {
+        return item.type !== 'BreakStatement';
+      });
+
+      if (consequent.length > 1) {
+        context.report(node, 'Case has more than one statement.');
+      }
+    }
+  };
+};

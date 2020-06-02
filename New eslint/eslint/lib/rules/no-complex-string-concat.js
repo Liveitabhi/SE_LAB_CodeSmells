@@ -9,10 +9,16 @@
 // Rule Definition
 // ------------------------------------------------------------------------------
 
+// http://eslint.org/docs/rules/consistent-this
+
+var ERROR = 'Too complex string concatenation.';
+
 module.exports = function(context) {
   return {
-    SwitchStatement: function(node) {
-      context.report(node, 'switch can be harmful.');
+    BinaryExpression: function(node) {
+      if (node.operator === '+' && node.parent.operator === '+') {
+        context.report(node, ERROR);
+      }
     }
   };
 };
